@@ -19,7 +19,7 @@ module.exports = {
         if(interaction.user.id !== ownerId) return interaction.reply({ content: 'Woah, đây là lệnh đặc quyền và bạn không thể sử dụng nó!', ephemeral: true })
 
         const user = interaction.options.getUser('user')
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {}) || interaction.client.users.cache.get(user.id)
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => console.log(err)) || interaction.client.users.cache.get(user.id)
         const message = interaction.options.getString('message')
 
         if(!member) return interaction.reply({ content: 'Thành viên bạn đề cập không có trong server hoặc không thể đọc được dữ liệu từ thành viên đó.', ephemeral: true })

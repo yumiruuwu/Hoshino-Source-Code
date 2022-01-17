@@ -12,9 +12,8 @@ module.exports = {
                 .setRequired(false)),
     async execute (client, interaction) {
         //const avatar = message.mentions.users.size ? message.mentions.users.first().avatarURL({ format: 'png', dynamic: true, size: 1024 }) : message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 });
-
         const user = interaction.options.getUser('user') || interaction.user
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {})
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => console.log(err));
 
         const image = user.displayAvatarURL({dynamic: true, size: 2048});
 

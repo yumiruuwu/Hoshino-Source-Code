@@ -46,7 +46,7 @@ module.exports = {
         if (!interaction.guild.me.permissions.has('MODERATE_MEMBERS')) return interaction.reply({ content: 'Hmm, hình như mình chưa được trao quyền MODERATE_MEMBERS để thực hiện yêu cầu này .-.', ephemeral: true });
 
         const user = interaction.options.getUser('user');
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {});
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => console.log(err));
 
         const weeks = interaction.options.getNumber('week') || '0';
         const days = interaction.options.getNumber('day') || '0';

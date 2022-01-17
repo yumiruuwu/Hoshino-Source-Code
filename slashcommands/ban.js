@@ -25,7 +25,7 @@ module.exports = {
         if(!interaction.member.permissions.has("BAN_MEMBERS")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
 
         const user = interaction.options.getUser('user')
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {})
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => console.log(err));
 
         if(!member) return interaction.reply({ content: "Thành viên bạn đề cập không có trong server hoặc không thể đọc được dữ liệu từ thành viên đó.", ephemeral: true });
         const reason = interaction.options.getString('reason') || 'Không rõ lý do'
@@ -44,7 +44,7 @@ module.exports = {
         .setFooter({ text: `BAN_MEMBER` })
         .setTimestamp()
 
-        await member.user.send(`Bạn đã bị ban khỏi server **\`${interaction.guild.name}\`** với lý do \`${reason}\``).catch(err => {})
+        await member.user.send(`Bạn đã bị ban khỏi server **\`${interaction.guild.name}\`** với lý do \`${reason}\``).catch(err => console.log(err))
         member.ban({ days, reason })
 
         return interaction.reply({ embeds: [ embed ]})
