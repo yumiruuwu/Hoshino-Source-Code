@@ -9,6 +9,7 @@
 - Currently this bot have 27 Slash Commands (include Sub-commands), 2 user commands & 2 prefix commands.
 
 ## Requirements
+- Node.js v17 or higher required
 - Any Text Editor (e.g VSC, Sublime Text,...)
 - Install [ffmpeg](https://www.ffmpeg.org)
 - MongoDB URL ([How to setup](https://youtu.be/4X2qsZudLNY))
@@ -16,7 +17,7 @@
 ## How to use
 - Clone this repo: `git clone https://github.com/yumiruuwu/Yurin-Bot-Source-Code.git`
 - Use `npm init` to re-config `package.json`
-- Edit `config.json` with your information (if you upload this code to public, make sure add this file to `.gitignore` before upload)
+- Edit `config.json` with your information (next time if you're going to upload this code to public, make sure add this file to `.gitignore` before upload)
 - Use `npm i` to install all required package
 
 ## I'm done so what's next?
@@ -30,7 +31,7 @@ Yes, this bot mainly use slash commands to function so here another how to use:
 > Thanks to [this project](https://github.com/DankMemer/sniper) for inspiring me a new way to register Slash.
 
 ## Final Step:
-It's done!!
+Enjoy!!
 
 ## Report Bugs/Errors:
 - Feel free to create an issue ticket and I will try to fix it or you can fix it yourself :joy:
