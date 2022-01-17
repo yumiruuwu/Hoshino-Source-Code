@@ -1,5 +1,5 @@
-# Yurin - Discord Bot Source Code
+# Yurin - Discord Bot Source Code (WIP)
 [![wakatime](https://wakatime.com/badge/user/e2f38306-a530-4264-be7e-838d855f9182/project/16e0e736-6c32-4af4-afe3-11e3f4d889f4.svg)](https://wakatime.com/badge/user/e2f38306-a530-4264-be7e-838d855f9182/project/16e0e736-6c32-4af4-afe3-11e3f4d889f4) [![Known Vulnerabilities](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code/badge.svg)](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d45bf290f635470490910eec57429502)](https://www.codacy.com/gh/yumiruuwu/Yurin-Bot-Source-Code/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yumiruuwu/Yurin-Bot-Source-Code&amp;utm_campaign=Badge_Grade)
 
 ##### Created by Mykm & replicanya
-More information about this repo coming soon...
+More information about this repo coming soon... so don't clone this repo, it will break the bot!!
