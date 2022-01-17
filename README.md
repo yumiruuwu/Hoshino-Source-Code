@@ -4,7 +4,7 @@
 ##### Created by Mykm & replicanya
 
 # Hold up!!!
-## Don't clone this repo yet else it won't work.
+## Don't clone this repo yet, it won't work right now.
 
 ## About this bot:
 - This bot can be used for moderating your server and yes, music commands included but still in beta.
