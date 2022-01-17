@@ -6,6 +6,11 @@
 # Hold up!!!
 ## Don't clone this repo yet, or it won't work.
 
+## About this bot:
+- This bot can be used for moderating your server and yes, music commands included but still in beta.
+- This bot doesn't include any fun or game commands so wait for next update (if i'm not lazy)
+- Currently this bot have 27 Slash Commands (include Sub-commands), 2 user commands & 2 prefix commands.
+
 ## Requirements
 - Any Text Editor (e.g VSC, Sublime Text,...)
 - Install [ffmpeg](https://www.ffmpeg.org)
@@ -28,11 +33,6 @@ Yes, this bot mainly use slash commands to function so here another how to use:
 
 ## Final Step:
 It's done!!
-
-## About this bot:
-- This bot can be used for moderating your server and yes, music commands included but still in beta.
-- This bot doesn't include any fun or game commands so wait for next update (if i'm not lazy)
-- Currently this bot have 27 Slash Commands (include Sub-commands), 2 user commands & 2 prefix commands.
 
 ## Report Errors:
 - Feel free to create an issue ticket and I will try to fix it or you can fix it yourself :joy:
