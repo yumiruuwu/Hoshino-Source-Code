@@ -1,14 +1,8 @@
 {
-	"clientId": "your bot id",
-	"guildId": "ignore this",
-	"_comment": "White Rose đã được đăng ký vào máy chủ với tư cách Miru.\nAnalyst Tea Time đã được đăng ký vào máy chủ với tư cách replicanya </>",
-	"guildId2": "ignore this",
-	"guildId3": "ignore this",
-	"applicationId": "same as clientId",
+	"clientId": "your bot account id",
 	"token": "your bot token",
 	"ownerId": "your account id",
-	"ownerId2": "ignore this",
-	"mongo_uri": "put your mongo url here",
+	"mongo_uri": "put your mongodb url here",
 	"prefix": "_"
 }
 

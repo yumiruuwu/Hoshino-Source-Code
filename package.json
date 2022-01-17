@@ -1,17 +1,17 @@
 {
-  "name": "your-project-name", 
+  "name": "discord-bot-temp",
   "version": "1.0.0",
-  "description": "project description",
+  "description": "your project description",
   "engines": {
     "node": "17.x"
   },
   "main": "main.js",
   "scripts": {
-    "test": "node hello",
+    "test": "node test.js",
     "start": "node main.js",
     "server": "pm2 start main.js"
   },
-  "author": "put your name here",
+  "author": "Flandre.",
   "license": "ISC",
   "dependencies": {
     "@discordjs/opus": "^0.7.0",
@@ -21,6 +21,7 @@
     "ascii-table": "^0.0.9",
     "axios": "^0.24.0",
     "discord-api-types": "^0.26.1",
+    "discord-buttons": "^4.0.0",
     "discord-together": "^1.3.25",
     "discord.js": "^13.6.0",
     "distube": "^3.1.0",
@@ -41,5 +42,18 @@
     "until": "^0.1.1",
     "util": "^0.12.4",
     "wikijs": "^6.3.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yumiruuwu/Yurin-Bot-Source-Code.git"
+  },
+  "keywords": [
+    "discordjs-bot",
+    "music-bot",
+    "moderation"
+  ],
+  "bugs": {
+    "url": "https://github.com/yumiruuwu/Yurin-Bot-Source-Code/issues"
+  },
+  "homepage": "https://github.com/yumiruuwu/Yurin-Bot-Source-Code#readme"
 }
