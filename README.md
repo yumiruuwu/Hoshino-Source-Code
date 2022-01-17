@@ -1,5 +1,5 @@
 # Yurin - Discord Bot Source Code (WIP)
-[![wakatime](https://wakatime.com/badge/user/e2f38306-a530-4264-be7e-838d855f9182/project/16e0e736-6c32-4af4-afe3-11e3f4d889f4.svg)](https://wakatime.com/badge/user/e2f38306-a530-4264-be7e-838d855f9182/project/16e0e736-6c32-4af4-afe3-11e3f4d889f4) [![Known Vulnerabilities](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code/badge.svg)](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d45bf290f635470490910eec57429502)](https://www.codacy.com/gh/yumiruuwu/Yurin-Bot-Source-Code/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yumiruuwu/Yurin-Bot-Source-Code&amp;utm_campaign=Badge_Grade)
+[![wakatime](https://wakatime.com/badge/user/e2f38306-a530-4264-be7e-838d855f9182/project/16e0e736-6c32-4af4-afe3-11e3f4d889f4.svg)](https://wakatime.com/badge/user/e2f38306-a530-4264-be7e-838d855f9182/project/16e0e736-6c32-4af4-afe3-11e3f4d889f4) [![Known Vulnerabilities](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code/badge.svg)](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code) [![Codacy Badge](https://app.codacy.com/project/badge/Grade/d45bf290f635470490910eec57429502)](https://www.codacy.com/gh/yumiruuwu/Yurin-Bot-Source-Code/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yumiruuwu/Yurin-Bot-Source-Code&amp;utm_campaign=Badge_Grade) [![GitHub license](https://img.shields.io/github/license/yumiruuwu/Yurin-Bot-Source-Code?style=flat-square)](https://github.com/yumiruuwu/Yurin-Bot-Source-Code/blob/master/LICENSE)
 
 ##### Created by Mykm & replicanya
 
@@ -27,9 +27,10 @@ Yes, this bot mainly use slash commands to function so here another how to use:
 1. Register/Unregister Slash to Global:
     - To register, simply use `node register` and check your bot in Discord
     - To unregister, use `node unregister` and wait about one hour according to [discordjs](https://discordjs.guide/interactions/registering-slash-commands.html#global-commands)
-2. Register/Unregister Slash to the specific guild: (recommend if you want to test or edit commands)
+2. Register/Unregister Slash to the specific guild: **(recommend if you want to test or edit commands)**
     - To register, use `node register` with Server ID. Example: `node register 222078108977594368`
     - To unregister, use `node unregister` with Server ID. Example: `node unregister 222078108977594368`
+> Thanks to 
 
 ## Final Step:
 It's done!!
