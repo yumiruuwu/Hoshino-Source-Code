@@ -30,7 +30,6 @@ Yes, this bot mainly use slash commands to function so here another how to use:
 2. Register/Unregister Slash to the specific guild: **(recommend if you want to test or edit commands)**
     - To register, use `node register` with Server ID. Example: `node register 222078108977594368`
     - To unregister, use `node unregister` with Server ID. Example: `node unregister 222078108977594368`
-> Thanks to 
 
 ## Final Step:
 It's done!!
