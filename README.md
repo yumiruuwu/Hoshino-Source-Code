@@ -3,9 +3,6 @@
 
 ##### Created by Mykm & replicanya
 
-# Hold up!!!
-## Don't clone this repo yet, it won't work right now.
-
 ## About this bot:
 - This bot can be used for moderating your server and yes, music commands included but still in beta.
 - This bot doesn't include any fun or game commands so wait for next update (if i'm not lazy)
@@ -35,7 +32,7 @@ Yes, this bot mainly use slash commands to function so here another how to use:
 ## Final Step:
 It's done!!
 
-## Report Errors:
+## Report Bugs/Errors:
 - Feel free to create an issue ticket and I will try to fix it or you can fix it yourself :joy:
 
 Srry for my bad english :sweat_smile:
