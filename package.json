@@ -7,7 +7,7 @@
   },
   "main": "main.js",
   "scripts": {
-    "test": "node test.js",
+    "test": "jest --coverage",
     "start": "node main.js",
     "server": "pm2 start main.js"
   },
@@ -42,6 +42,9 @@
     "until": "^0.1.1",
     "util": "^0.12.4",
     "wikijs": "^6.3.3"
+  },
+  "devDependencies": {
+    "jest": "^27.4.7"
   },
   "repository": {
     "type": "git",
