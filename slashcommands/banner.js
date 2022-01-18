@@ -13,10 +13,10 @@ module.exports = {
                 .setRequired(false)),
     async execute (client, interaction) {
         const user = interaction.options.getUser('user') || interaction.user
-        //const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {})
+        const member = interaction.client.users.cache.get(user.id);
 
         axios
-            .get(`https://discord.com/api/users/${user.id}`, {
+            .get(`https://discord.com/api/users/${member.id}`, {
                 headers: {
                     Authorization: `Bot ${client.token}`,
                 },
@@ -26,22 +26,22 @@ module.exports = {
 
                 if(banner) {
                     const extension = banner.startsWith("a_") ? ".gif" : ".png";
-                    const url = `https://cdn.discordapp.com/banners/${user.id}/${banner}${extension}?size=2048`;
+                    const url = `https://cdn.discordapp.com/banners/${member.id}/${banner}${extension}?size=2048`;
 
                     const bannerEmbed = new MessageEmbed()
-                        .setDescription(`Biểu ngữ hồ sơ của ${user.username || user.tag}`)
+                        .setDescription(`Biểu ngữ hồ sơ của ${member.tag}`)
                         .setImage(url);
 
                     interaction.reply({embeds: [bannerEmbed]});
                 }else {
                     if (accent_color) {
                         const colorEmbed = new MessageEmbed()
-                            .setDescription(`${user.username} không có biểu ngữ hồ sơ nhưng người dùng có màu hồ sơ :>`)
+                            .setDescription(`${member.tag} không có biểu ngữ hồ sơ nhưng người dùng có màu hồ sơ :>`)
                             .setColor(accent_color);
 
                         interaction.reply({embeds: [colorEmbed]});
                     }else{
-                        return interaction.reply(`${user.username} không có biểu ngữ hồ sơ và cũng không có màu hồ sơ :v`);
+                        return interaction.reply(`${member.tag} không có biểu ngữ hồ sơ và cũng không có màu hồ sơ :v`);
                     }
                 }
             });

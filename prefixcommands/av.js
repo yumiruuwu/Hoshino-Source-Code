@@ -5,7 +5,7 @@ module.exports = {
     name: 'avatar',
     aliases: ['av', 'ava'],
     description: 'Xem avatar của thành viên',
-    async execute (client, message, args, Discord) {
+    async execute (client, message) {
         const avatar = message.mentions.users.size ? message.mentions.users.first().avatarURL({ format: 'png', dynamic: true, size: 1024 }) : message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 });
         if (message.mentions.users.size > 0) {
             const mentionedEmbed = new MessageEmbed()

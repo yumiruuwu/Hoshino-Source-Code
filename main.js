@@ -77,7 +77,7 @@ client.on('interactionCreate', async interaction => {
 				await interaction.reply({ content: 'Đã xảy ra lỗi khi thực thi lệnh slash!', ephemeral: true });
 			}
 		} else if (data) {
-			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.'});
+			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.'});
 		}
 	});
 });
@@ -111,7 +111,7 @@ client.on('interactionCreate', async interaction => {
 				await interaction.reply({ content: 'Đã xảy ra lỗi khi thực thi lệnh slash!', ephemeral: true });
 			}
 		} else if (data) {
-			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.'});
+			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.'});
 		}
 	});
 });
@@ -152,7 +152,7 @@ client.on('messageCreate', async (message) => {
 					await message.reply('Đã xảy ra lỗi khi thực thi lệnh!');
 				}		
 			} else if (data) {
-				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.`);
+				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.`);
 			}
 		})
 	} else if (!prefixData) {
@@ -182,7 +182,7 @@ client.on('messageCreate', async (message) => {
 					await message.reply('Đã xảy ra lỗi khi thực thi lệnh!');
 				}		
 			} else if (data) {
-				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.`);
+				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.`);
 			}
 		})
 	}

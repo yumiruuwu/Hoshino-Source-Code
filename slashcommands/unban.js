@@ -7,7 +7,7 @@ module.exports = {
         .setName('unban')
         .setDescription('Dùng để gỡ lệnh cấm ai đó vào nhà!')
         .addUserOption(option => 
-            option.setName('userid')
+            option.setName('user_id')
                 .setDescription('ID thành viên đã bị ban')
                 .setRequired(true))
         .addStringOption(option2 => 
@@ -17,13 +17,12 @@ module.exports = {
     async execute (client, interaction) {
         if(!interaction.member.permissions.has("BAN_MEMBERS")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
 
-        const user = interaction.options.getUser('userid')
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {})
+        const user = interaction.options.getUser('user_id')
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id)
 
         const reason = interaction.options.getString('reason') || 'Không có';
 
         const embed = new MessageEmbed()
-        //.setFooter("UNBAN_MEMBER")
         .setFooter({ text: 'UNBAN_MEMBER' })
 
         interaction.guild.bans.fetch().then( bans => {

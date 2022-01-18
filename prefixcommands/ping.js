@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'ping',
     description: 'Xem trạng thái của bot!',
-    async execute (client, message, args, Discord) {
+    async execute (client, message) {
         const pingEmbed = new MessageEmbed()
         .setTitle('Ping pong :3')
         .setColor('RANDOM')

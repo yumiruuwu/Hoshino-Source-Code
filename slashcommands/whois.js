@@ -67,7 +67,7 @@ module.exports = {
                 .setRequired(false)),
     async execute (client, interaction) {
         const user = interaction.options.getUser('user') || interaction.user
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {}) || interaction.client.users.cache.get(user.id)
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id) || interaction.client.users.cache.get(user.id)
 
         const choice = interaction.options.getString('private');
 

@@ -14,12 +14,13 @@ module.exports = {
         //const avatar = message.mentions.users.size ? message.mentions.users.first().avatarURL({ format: 'png', dynamic: true, size: 1024 }) : message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 });
 
         const user = interaction.options.getUser('user') || interaction.user
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {})
+        //const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id) || interaction.client.users.cache.get(user.id);
+        const member = interaction.client.users.cache.get(user.id);
 
         const image = user.displayAvatarURL({dynamic: true, size: 2048});
 
         const mentionedEmbed = new MessageEmbed()
-        .setTitle(`Ảnh hồ sơ của thành viên ${member.user.tag}`)
+        .setTitle(`Ảnh hồ sơ của thành viên ${member.tag}`)
         .setColor('#FFC0CB')
         .setImage(`${image}`)
         //.setFooter(`${interaction.user.username}`)

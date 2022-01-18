@@ -52,7 +52,7 @@ module.exports = {
     name: 'whois',
     aliases: ['userinfo'],
     description: 'Xem thông tin thành viên',
-    async execute (client, message, args, Discord) {
+    async execute (client, message, args) {
         var permissions = [];
         var acknowledgements = 'Member';
 

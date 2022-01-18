@@ -71,7 +71,7 @@ module.exports = {
     name: 'serverinfo',
     aliases: 'server, svin4',
     description: 'Xem thông tin server',
-    async execute (client, message, args, Discord) {
+    async execute (client, message) {
         //Get server information
         const roles = message.guild.roles.cache.sort((a, b) => b.position - a.position).map(role => role.toString());
         const channels = message.guild.channels.cache;

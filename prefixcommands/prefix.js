@@ -3,7 +3,7 @@ const prefixModel = require('../models/prefix');
 module.exports = {
     name: 'prefix',
     description: 'Thay đổi prefix của bot cho server này',
-    async execute (client, message, args, Discord) {
+    async execute (client, message, args) {
         if (!message.member.permissions.has('MANAGE_MESSAGES')) return message.reply({ content: 'Bạn không có quyền thực hiện điều này .-.', ephemeral: true });
 
         const data = await prefixModel.findOne({
