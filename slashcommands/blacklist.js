@@ -37,7 +37,7 @@ module.exports = {
                     if(err) throw err;
                     if(data) {
                         interaction.editReply({ content: `**${user.tag}** đã có sẵn trong danh sách đen!` });
-                    } else if(!data) {
+                    } else if(!data) { // lgtm[js/comparison-of-identical-expressions]
                         data = new blacklist({ id : member })
                         data.save()
                             .catch(err => console.log(err))
@@ -56,7 +56,7 @@ module.exports = {
                         await blacklist.findOneAndDelete({ id : member })
                         .catch(err => console.log(err))
                         interaction.editReply({ content: `**${user.tag}** đã được gỡ bỏ khỏi danh sách đen.` })
-                    } else if (!data) {
+                    } else if (!data) { // lgtm[js/comparison-of-identical-expressions]
                         interaction.editReply({ content: `**${user.tag}** không có trong danh sách đen!`})
                     }
                 })
