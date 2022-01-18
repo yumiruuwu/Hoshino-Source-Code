@@ -2,8 +2,8 @@
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-    name: 'av',
-    aliases: ['avatar', 'ava'],
+    name: 'avatar',
+    aliases: ['av', 'ava'],
     description: 'Xem avatar của thành viên',
     async execute (client, message, args, Discord) {
         const avatar = message.mentions.users.size ? message.mentions.users.first().avatarURL({ format: 'png', dynamic: true, size: 1024 }) : message.author.avatarURL({ format: 'png', dynamic: true, size: 1024 });

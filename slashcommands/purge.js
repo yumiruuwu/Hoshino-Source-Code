@@ -16,7 +16,7 @@ module.exports = {
     async execute (client, interaction) {
         if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
         const user = interaction.options.getUser('user')
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => console.log(err)) || interaction.client.users.cache.get(user.id)
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {}) || interaction.client.users.cache.get(user.id)
         const number = interaction.options.getString('number');
 
         if(number) {

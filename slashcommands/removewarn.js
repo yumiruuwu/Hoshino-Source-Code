@@ -18,7 +18,7 @@ module.exports = {
         if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
 
         const user = interaction.options.getUser('user')
-        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => console.log(err))
+        const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {})
         const listnumber = interaction.options.getInteger('listnumber')
 
         if(!member) return interaction.reply({ content: 'Thành viên được đề cập không hợp lệ .-.', ephemeral: true })

@@ -56,11 +56,11 @@ module.exports = {
                 //.setAutocomplete(true) The slash command builder does not yet support using autocomplete.
                 .setRequired(true)
                 .addChoice('YouTube Together', 'youtube')
-                .addChoice('YouTube Together Development', 'youtubedev') 
-                .addChoice('Poker Night', 'poker')                      
-                .addChoice('Betrayal.io', 'betrayal')                   
-                .addChoice('Fishington.io', 'fishing')                  
-                .addChoice('Chess In The Park', 'chess')                
+                .addChoice('YouTube Together Development', 'youtubedev') //replica: dm sukayo!!  youtube ở đây đéo ghi hoa
+                .addChoice('Poker Night', 'poker')                      //sukayo: cặc, ghi hoa thì nó vẫn vậy thôi, ngu đéo
+                .addChoice('Betrayal.io', 'betrayal')                   //replica: cặc, m ghi vậy thì nó chạy được cứt
+                .addChoice('Fishington.io', 'fishing')                  //miru: 1 trong 2 chúng mày ghi thêm 1 dòng nữa làm chó
+                .addChoice('Chess In The Park', 'chess')                //m.y: bruh :v
                 .addChoice('Checkers in the Park', 'checkers')
                 .addChoice('Chess In The Park Development', 'chessdev')
                 .addChoice('Letter Tile', 'lettertile')
@@ -73,7 +73,9 @@ module.exports = {
         const channel = interaction.options.getChannel('channel');
         const activitytype = interaction.options.getString('type');
         //const channelid = interaction.guild.channels.cache.get(channel.id);
+
         //console.log(channel, activitytype)
+
         if (channel.type !== 'GUILD_VOICE') return interaction.reply({ content: 'Kênh Voice được đề cập không hợp lệ.', ephemeral: true });
 
         client.discordTogether.createTogetherCode(channel.id, activitytype).then(async invite => {
