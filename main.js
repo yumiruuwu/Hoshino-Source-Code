@@ -3,12 +3,15 @@ const fs = require('fs');
 const { Client, Collection, Intents } = require('discord.js');
 const { token, mongo_uri } = require('./config.json');
 const prefix = require('./models/prefix');
+// const { glob } = require("glob");
+// const { promisify } = require("util");
 const mongoose = require('mongoose');
 //const { MessageEmbed, ContextMenuInteraction, MessageActionRow, MessageButton } = require("discord.js");
 const { DiscordTogether } = require('discord-together');
 const blacklist = require('./models/blacklist');
 const DisTube = require('distube');
 const { SoundCloudPlugin } = require("@distube/soundcloud");
+// const globPromise = promisify(glob);
 
 mongoose.connect(mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true})
 
@@ -48,11 +51,11 @@ for (const file of eventFiles) {
 }
 
 client.commands = new Collection();
-const commandFiles = fs.readdirSync('./slashcommands').filter(file => file.endsWith('.js'));
+const slashcommandFiles = fs.readdirSync('./slashcommands').filter(file => file.endsWith('.js'));
 
-for (const file of commandFiles) {
-	const command = require(`./slashcommands/${file}`);
-	client.commands.set(command.data.name, command);
+for (const slash_file of slashcommandFiles) {
+	const slash_command = require(`./slashcommands/${slash_file}`);
+	client.commands.set(slash_command.data.name, slash_command);
 }
 
 //Slash Commands
@@ -64,14 +67,14 @@ client.on('interactionCreate', async interaction => {
     //const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {}) || interaction.client.users.cache.get(user.id) || await interaction.client.users.fetch(user.id).catch(err => {})
 	const member = interaction.client.users.cache.get(user.id)
 
-	const command = client.commands.get(interaction.commandName);
+	const slashcommand = client.commands.get(interaction.commandName);
 
-	if (!command) return;
+	if (!slashcommand) return;
 	blacklist.findOne({ id : member }, async(err, data) => {
 		if (err) throw err;
 		if (!data) {
 			try {
-				await command.execute(client, interaction);
+				await slashcommand.execute(client, interaction);
 			} catch (error) {
 				console.error(error);
 				await interaction.reply({ content: 'Đã xảy ra lỗi khi thực thi lệnh slash!', ephemeral: true });
@@ -83,11 +86,11 @@ client.on('interactionCreate', async interaction => {
 });
 
 //client.contextmenucommands = new Collection();
-const contextmenucommandFiles = fs.readdirSync('./contextmenu').filter(cfile => cfile.endsWith('.js'));
+const contextmenucommandFiles = fs.readdirSync('./contextmenu').filter(contextmenu_file => contextmenu_file.endsWith('.js'));
 
-for (const cfile of contextmenucommandFiles) {
-	const ccommand = require(`./contextmenu/${cfile}`);
-	client.commands.set(ccommand.name, ccommand);
+for (const contextmenu_file of contextmenucommandFiles) {
+	const contextmenu_command = require(`./contextmenu/${contextmenu_file}`);
+	client.commands.set(contextmenu_command.name, contextmenu_command);
 }
 
 //Context Menu
@@ -98,14 +101,14 @@ client.on('interactionCreate', async interaction => {
 	const member = interaction.client.users.cache.get(user.id)
 	//console.log(member)
 
-	const ccommand = client.commands.get(interaction.commandName);
+	const contextmenu_command = client.commands.get(interaction.commandName);
 
-	if (!ccommand) return;
+	if (!contextmenu_command) return;
 	blacklist.findOne({ id : member }, async(err, data) => {
 		if (err) throw err;
 		if (!data) {
 			try {
-				await ccommand.execute(client, interaction);
+				await contextmenu_command.execute(client, interaction);
 			} catch (error) {
 				console.error(error);
 				await interaction.reply({ content: 'Đã xảy ra lỗi khi thực thi lệnh slash!', ephemeral: true });
@@ -117,12 +120,7 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.prefixcommands = new Collection();
-const prefixcommandFiles = fs.readdirSync('./prefixcommands').filter(files => files.endsWith('.js'));
-
-for (const files of prefixcommandFiles) {
-	const commmand = require(`./prefixcommands/${files}`);
-	client.prefixcommands.set(commmand.name, commmand);
-}
+require("./handler")(client); //Since Prefix Commands require async & await so handler for prefix commands is required
 
 //Prefix Commands
 client.on('messageCreate', async (message) => {
@@ -186,27 +184,6 @@ client.on('messageCreate', async (message) => {
 			}
 		})
 	}
-	// if (message.author.bot || !message.guild || !message.content.toLowerCase().startsWith(prefix)) return;
-	// const [cmd, ...args] = message.content.slice(prefix.length).trim().split(" ");
-
-	// const member = message.author.id;
-	// let idmember = `<@${member}>`;
-	// //console.log(idmember);		
-	// const commmand = client.prefixcommands.get(cmd.toLowerCase()) || client.prefixcommands.find(c => c.aliases?.includes(cmd.toLowerCase()));
-	// if (!commmand) return;
-	// blacklist.findOne({ id : idmember }, async(err, data) => {
-	// 	if (err) throw err;
-	// 	if (!data) {
-	// 		try {
-	// 			await commmand.execute(client, message, args);
-	// 		} catch (error) {
-	// 			console.error(error);
-	// 			await message.channel.reply('Đã xảy ra lỗi khi thực thi lệnh!');
-	// 		}		
-	// 	} else if (data) {
-	// 		message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.`);
-	// 	}
-	// })
 });
 
 client.login(token);

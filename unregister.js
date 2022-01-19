@@ -8,9 +8,9 @@ const { clientId, token } = require('./config.json');
 const guild = process.argv[2];
 
 const commands = [];
-const commandFiles = fs.readdirSync('./empty').filter(file => file.endsWith('.js'));
+const slashcommandFiles = fs.readdirSync('./empty').filter(file => file.endsWith('.js'));
 
-for (const file of commandFiles) {
+for (const file of slashcommandFiles) {
 	const command = require(`./empty/${file}`);
 	commands.push(command.data.toJSON());
 }

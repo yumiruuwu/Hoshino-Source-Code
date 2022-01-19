@@ -6,7 +6,11 @@
 ## About this bot:
 - This bot can be used for moderating your server and yes, music commands included but still in beta.
 - This bot doesn't include any fun or game commands so wait for next update (if i'm not lazy)
-- Currently this bot have 27 Slash Commands (include Sub-commands), 2 user commands & 6 prefix commands.
+- Currently this bot have 27 Slash Commands (include Sub-commands), 2 user commands & 15 prefix commands.
+
+## Note:
+- This source code was write with javascript language (probably you already know it)
+- The main language which bot will reply is Vietnamese so feel free to translate them to your preferred language.
 
 ## Requirements
 - Node.js v17 or higher required
@@ -16,6 +20,7 @@
 
 ## How to use
 - Clone this repo: `git clone https://github.com/yumiruuwu/Yurin-Bot-Source-Code.git`
+- After cloning this repo, please remove the **devDependencies** in `package.json` then close it
 - Use `npm init` to re-config `package.json`
 - Edit `config.json` with your information (next time if you're going to upload this code to public, make sure add this file to `.gitignore` before upload)
 - Use `npm i` to install all required package
