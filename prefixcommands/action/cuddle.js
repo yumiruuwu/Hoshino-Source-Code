@@ -9,7 +9,7 @@ module.exports = {
         const member = message.mentions.users.first();
         const url = 'https://nekos.life/api/v2/img/cuddle';
 
-        if (!member) return message.reply({ content: 'Bạn cần tag người cần âu yếm vào <:EH_miru_huh:933256778915905596>' });
+        if (!member) return message.reply({ content: 'Bạn cần tag người cần âu yếm vào <:EH_miru_huh:933553804270530590>' });
         if (member.id === message.author.id) return message.reply({ content: 'Bạn đang tự âu yếm bản thân à <:EH_oh:864786939593228289>' });
 
         let response, data;

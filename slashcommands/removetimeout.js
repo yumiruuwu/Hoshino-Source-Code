@@ -27,8 +27,7 @@ module.exports = {
         member.timeout(null, reason);
         // interaction.reply({ content: 'Tính năng đang thử nghiệm...', ephemeral: true})
         const rtimeoutembed = new MessageEmbed()
-        .setTitle('<a:EH_warning:927195307123556362> Timeout System <a:EH_warning:927195307123556362>')
-        .setDescription(`- Thành viên ${user} đã được gỡ khỏi hàng chờ.\n- Lý do: ${reason}`)
+        .setDescription(`Thành viên ${user} đã được gỡ khỏi hàng chờ.\n**Bởi:** ${interaction.user}\n- Lý do: ${reason}`)
         .setColor('GREEN')
         .setFooter({ text: 'MODERATE_MEMBERS' })
         .setTimestamp()

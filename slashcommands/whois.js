@@ -126,7 +126,7 @@ module.exports = {
             permissions.push("Không có");
         }
 
-        if(member.permissions.has("MANAGE_GUILD" || "KICK_MEMBERS" || "BAN_MEMBERS" || "MODERATE_MEMBERS")) { // lgtm[js/comparison-of-identical-expressions]
+        if(member.permissions.has("MANAGE_GUILD" || "KICK_MEMBERS" || "BAN_MEMBERS" || "MODERATE_MEMBERS")) { //lgtm [js/trivial-conditional]
             acknowledgements = 'Staff'
         }
 

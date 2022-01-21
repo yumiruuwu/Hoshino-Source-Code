@@ -18,7 +18,7 @@ module.exports = {
             response = await axios.get(url);
             data = response.data;
         } catch (e) {
-            return message.reply(`Dịch vụ vả online hiện không phản hồi, xin vui lòng thử lại lúc khác.`)
+            return message.reply(`Dịch vụ vả trực tuyến hiện không phản hồi, xin vui lòng thử lại lúc khác.`)
         }
 
         let randomTitle = [
