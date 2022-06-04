@@ -1,6 +1,6 @@
 {
 	"clientId": "your bot account id",
-	"token": "your bot token",
+	"token": "your bot token", //NzI1Njk1MTI2MDY4MDAyOTE3.XvSeQA.WgErcS1EEbX2LCmDvxPeAOl78P0
 	"ownerId": "your account id",
 	"mongo_uri": "put your mongodb url here"
 }
