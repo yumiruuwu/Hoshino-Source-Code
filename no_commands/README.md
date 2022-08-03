@@ -1,0 +1,1 @@
+Nếu bạn đang tự hỏi cái folder này để làm gì thì tác dụng của nó là xoá các lệnh slash khỏi server. Thế thôi :))

@@ -1,43 +1,16 @@
-//const Discord = require('discord.js');
 const fs = require('fs');
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, Partials } = require('discord.js');
 const { token, mongo_uri } = require('./config.json');
 const prefix = require('./models/prefix');
-// const { glob } = require("glob");
-// const { promisify } = require("util");
 const mongoose = require('mongoose');
-//const { MessageEmbed, ContextMenuInteraction, MessageActionRow, MessageButton } = require("discord.js");
-const { DiscordTogether } = require('discord-together');
+//const { DiscordTogether } = require('discord-together');
 const blacklist = require('./models/blacklist');
-const DisTube = require('distube');
-const { SoundCloudPlugin } = require("@distube/soundcloud");
-// const globPromise = promisify(glob);
 
 mongoose.connect(mongo_uri, { useNewUrlParser: true, useUnifiedTopology: true})
 
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS] }, { partials: ["MESSAGE", "CHANNEL", "REACTION", "USER" ]});
-//module.exports = client;
-client.discordTogether = new DiscordTogether(client);
-client.distube = new DisTube.default(client, {
-	searchSongs: 0,
-	searchCooldown: 30,
-	emitNewSongOnly: true,
-	leaveOnEmpty: true,
-	emptyCooldown: 60,
-	leaveOnFinish: true,
-	leaveOnStop: true,
-	updateYouTubeDL: false,
-	plugins: [new SoundCloudPlugin()],
-	// plugins: [new SoundCloudPlugin(), new SpotifyPlugin()],
-});
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildVoiceStates, GatewayIntentBits.GuildInvites, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMessageReactions], partials: [Partials.Message, Partials.Channel, Partials.Reaction, Partials.User], WebSocketManager: { properties: { browser: "Discord iOS" }} });
 
-for(const filez of fs.readdirSync('./distube_event/')) {
-	if (filez.endsWith('.js')) {
-		let fileName = filez.substring(0, filez.length - 3)
-		let fileContents = require(`./distube_event/${filez}`)
-		client.distube.on(fileName, fileContents.bind(null, client))
-	}
-}
+//client.discordTogether = new DiscordTogether(client);
 
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
 
@@ -80,7 +53,7 @@ client.on('interactionCreate', async interaction => {
 				await interaction.reply({ content: 'Đã xảy ra lỗi khi thực thi lệnh slash!', ephemeral: true });
 			}
 		} else if (data) { //lgtm [js/trivial-conditional]
-			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.'});
+			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.'});
 		}
 	});
 });
@@ -95,7 +68,7 @@ for (const contextmenu_file of contextmenucommandFiles) {
 
 //Context Menu
 client.on('interactionCreate', async interaction => {
-	if (!interaction.isContextMenu()) return;
+	if (!interaction.isContextMenuCommand()) return;
 	const user = interaction.user;
     //const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {}) || interaction.client.users.cache.get(user.id) || await interaction.client.users.fetch(user.id).catch(err => {})
 	const member = interaction.client.users.cache.get(user.id)
@@ -114,7 +87,7 @@ client.on('interactionCreate', async interaction => {
 				await interaction.reply({ content: 'Đã xảy ra lỗi khi thực thi lệnh slash!', ephemeral: true });
 			}
 		} else if (data) { //lgtm [js/trivial-conditional]
-			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.'});
+			interaction.reply({ content: 'Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.'});
 		}
 	});
 });
@@ -150,7 +123,7 @@ client.on('messageCreate', async (message) => {
 					await message.reply('Đã xảy ra lỗi khi thực thi lệnh!');
 				}		
 			} else if (data) { //lgtm [js/trivial-conditional]
-				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.`);
+				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.`);
 			}
 		})
 	} else if (!prefixData) {
@@ -180,7 +153,7 @@ client.on('messageCreate', async (message) => {
 					await message.reply('Đã xảy ra lỗi khi thực thi lệnh!');
 				}		
 			} else if (data) { //lgtm [js/trivial-conditional]
-				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho chủ bot để được xem xét lại.`);
+				message.reply(`Etou... Có vẻ như bạn đã bị cấm sử dụng dịch vụ của mình. Nếu bạn nghĩ có sự sai sót gì ở đây thì hãy thông báo cho **Flandre.#9666** để được xem xét lại.`);
 			}
 		})
 	}

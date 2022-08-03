@@ -84,7 +84,7 @@ module.exports = {
             .setAuthor({ name: interaction.user.username, iconURL: interaction.user.displayAvatarURL() })
             .setColor('RANDOM')
             .setTitle('Đã thiết lập thành công hoạt động!')
-            .setDescription(`- Kênh Voice được thiết lập: ${channel}\n- Loại hoạt động: ${act[activitytype]}\n\n- Nếu thấy ổn thì hãy nhấn nút phía dưới để tham gia hoạt động :Đ`)
+            .setDescription(`- Kênh Voice được thiết lập: ${channel}\n- Loại hoạt động: ${act[activitytype]}\n\n- Nếu thấy ổn thì hãy nhấn nút phía dưới để tham gia hoạt động :Đ\n**THÔNG BÁO:** Discord đã khoá 1 số hoạt động sau hệ thống server boost, tức là bây giờ sẽ có 1 số hoạt động không thể chạy được như trước nữa. Xin cảm ơn ;-;`)
             .setThumbnail(`${actimage[activitytype]}`)
             //.setFooter('XIII')
             .setFooter({ text: 'XIII'})
@@ -102,3 +102,5 @@ module.exports = {
         });
     }
 }
+
+//This slash command is no longer supported!!!

@@ -19,7 +19,7 @@ module.exports = {
 
                 if(banner) {
                     const extension = banner.startsWith("a_") ? ".gif" : ".png";
-                    const url = `https://cdn.discordapp.com/banners/${user.id}/${banner}${extension}?size=2048`;
+                    const url = `https://cdn.discordapp.com/banners/${user.id}/${banner}${extension}?size=4096`;
 
                     const bannerEmbed = new MessageEmbed()
                         .setDescription(`Biểu ngữ hồ sơ của ${user.username || user.tag}`)

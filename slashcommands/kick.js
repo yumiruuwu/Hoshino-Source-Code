@@ -1,5 +1,5 @@
 //const Discord = require('discord.js');
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -25,10 +25,10 @@ module.exports = {
         const reason = interaction.options.getString('reason')
 
         if(!member.kickable || member.user.id === client.user.id) return interaction.reply("Mình không thể đá thành viên đó ra khỏi nhà.");
-
+        if(interaction.user.id === member.user.id) return interaction.reply("Bạn không thể tự đá bản thân ra khỏi nhà được :v");
         if(interaction.member.roles.highest.position <= member.roles.highest.position) return interaction.reply(`<a:9441uncheckraveninha:882180505892683846> Thành viên được đề cập có role cao hơn hoặc ngang với bạn.`)
 
-        const kickembed = new MessageEmbed()
+        const kickembed = new EmbedBuilder()
         .setDescription(`**${member.user.tag}** đã bị đá ra khỏi nhà với lý do: \`${reason}\``)
         .setColor("GREEN")
         //.setFooter("KICK_MEMBERS")

@@ -1,5 +1,5 @@
 const db = require('../models/warns');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -46,13 +46,13 @@ module.exports = {
             data.save()
         });
 
-        const userEmbed = new MessageEmbed()
+        const userEmbed = new EmbedBuilder()
         .setDescription(`Bạn đã bị cảnh cáo với lý do **${reason}**`)
-        .setColor('RED')
+        .setColor('Red')
 
-        const warnEmbed = new MessageEmbed()
+        const warnEmbed = new EmbedBuilder()
         .setDescription(`Đã cảnh cáo thành viên ${user} với lý do **${reason}**`)
-        .setColor('BLUE')
+        .setColor('Blue')
         
         member.send({ embeds: [userEmbed] })
         interaction.reply({ embeds: [warnEmbed] })

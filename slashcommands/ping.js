@@ -1,5 +1,5 @@
 //const Discord = require('discord.js');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 //const wait = require('util').promisify(setTimeout);
 
@@ -12,9 +12,9 @@ module.exports = {
 			await interaction.deferReply();
 			const mesg = await interaction.editReply({ content: "Pong!", fetchReply: true });
 
-			const pingEmbed = new MessageEmbed()
+			const pingEmbed = new EmbedBuilder()
 			.setTitle('Ping pong :3')
-			.setColor('RANDOM')
+			.setColor('Random')
 			.setDescription(`**__Độ trễ của bot:__** ${mesg.createdTimestamp - interaction.createdTimestamp}ms\n**__Độ trễ phản hồi từ server:__** ${client.ws.ping} ms`)
 			.setTimestamp()
 			// await interaction.editReply({ content: `Pong!\nĐộ trễ của bot: \`${mesg.createdTimestamp - interaction.createdTimestamp}ms\`, Độ trễ phản hồi từ server: \`${client.ws.ping}ms\`` });

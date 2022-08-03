@@ -1,5 +1,5 @@
 const db = require('../models/warns');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -21,9 +21,9 @@ module.exports = {
         db.findOne({ guildid: interaction.guild.id, user: member.user.id}, async(err, data) => {
             if(err) throw err;
             if(data) {
-                const warnclEmbed = new MessageEmbed()
+                const warnclEmbed = new EmbedBuilder()
                 .setTitle(`Danh sách số lần cảnh cáo của ${user.username}`)
-                .setColor('BLUE')
+                .setColor('Blue')
 
                 data.content.map((w, i) => warnclEmbed.addFields({ name: `**${i + 1}** | Moderator : ${interaction.guild.members.cache.get(w.moderator).user.tag}`, value: `Lý do : ${w.reason}`}))
                 

@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { clientId } = require('../config.json');
 
@@ -70,9 +70,9 @@ module.exports = {
 
         member.timeout(m_wdhm, reason);
         // interaction.reply({ content: 'Tính năng đang thử nghiệm...', ephemeral: true})
-        const timeoutembed = new MessageEmbed()
+        const timeoutembed = new EmbedBuilder()
         .setDescription(`- Thành viên ${user} đã bị xếp vào hàng chờ.\n**Bởi:** ${interaction.user}\n**Lý do:** ${reason}\n**Thời gian hàng chờ:** ${weeks} tuần ${days} ngày ${hours} giờ ${minutes} phút.`)
-        .setColor('YELLOW')
+        .setColor('Yellow')
         .setFooter({ text: 'MODERATE_MEMBERS' })
         .setTimestamp()
 

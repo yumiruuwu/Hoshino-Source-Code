@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
 
         member.timeout(null, reason);
         // interaction.reply({ content: 'Tính năng đang thử nghiệm...', ephemeral: true})
-        const rtimeoutembed = new MessageEmbed()
+        const rtimeoutembed = new EmbedBuilder()
         .setDescription(`Thành viên ${user} đã được gỡ khỏi hàng chờ.\n**Bởi:** ${interaction.user}\n- Lý do: ${reason}`)
         .setColor('GREEN')
         .setFooter({ text: 'MODERATE_MEMBERS' })
