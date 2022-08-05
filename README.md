@@ -4,7 +4,7 @@
 ##### ~~Created by Mykm & replicanya~~ ATTENTION: This repo does not work anymore!!!
 
 ## About this bot:
-- This bot can be used for moderating your server and yes, music commands included but still in beta.
+- This bot can be used for moderating your server. ~~music commands included but still in beta.~~
 - This bot doesn't include any fun or game commands so wait for next update (if i'm not lazy)
 - Currently this bot have 27 Slash Commands (include Sub-commands), 2 user commands & 17 prefix commands.
 
