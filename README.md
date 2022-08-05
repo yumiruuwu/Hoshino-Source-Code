@@ -1,4 +1,4 @@
-# Yurin - Discord Bot Source Code (WIP)
+# Hoshino - Discord Bot Source Code (WIP)
 [![Known Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/yumiruuwu/Yurin-Bot-Source-Code?style=flat-square)](https://snyk.io/test/github/yumiruuwu/Yurin-Bot-Source-Code) [![Codacy Badge](https://img.shields.io/codacy/grade/d45bf290f635470490910eec57429502?style=flat-square)](https://www.codacy.com/gh/yumiruuwu/Yurin-Bot-Source-Code/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=yumiruuwu/Yurin-Bot-Source-Code&amp;utm_campaign=Badge_Grade) [![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/yumiruuwu/Yurin-Bot-Source-Code?style=flat-square)](https://lgtm.com/projects/g/yumiruuwu/Yurin-Bot-Source-Code/context:javascript) [![GitHub license](https://img.shields.io/github/license/yumiruuwu/Yurin-Bot-Source-Code?style=flat-square)](https://github.com/yumiruuwu/Yurin-Bot-Source-Code/blob/master/LICENSE) [![CodeQL](https://github.com/yumiruuwu/Yurin-Bot-Source-Code/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/yumiruuwu/Yurin-Bot-Source-Code/actions/workflows/codeql-analysis.yml) [![GitHub Super-Linter](https://github.com/yumiruuwu/Yurin-Bot-Source-Code/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter) 
 
 ##### ~~Created by Mykm & replicanya~~ ATTENTION: This repo does not work anymore!!!
@@ -19,7 +19,7 @@
 - MongoDB URL ([How to setup](https://youtu.be/4X2qsZudLNY))
 
 ## How to use
-- Clone this repo: `git clone https://github.com/yumiruuwu/Yurin-Bot-Source-Code.git`
+- Clone this repo: `git clone https://github.com/yumiruuwu/Hoshino-Source-Code.git`
 - After cloning this repo, please remove the **devDependencies** in `package.json` then close it
 - Use `npm init` to re-config `package.json`
 - Edit `config.json` with your information (next time if you're going to upload this code to public, make sure add this file to `.gitignore` before upload)
