@@ -13,8 +13,10 @@ module.exports = {
             option.setName('action')
                 .setDescription('Bạn muốn thêm (add) hay gỡ (remove) người dùng khỏi chặn sử dụng lệnh.')
                 .setRequired(true)
-                .addChoice('add', 'add')
-                .addChoice('remove', 'remove'))
+                .addChoices(
+                    { name: 'add', value: 'add'},
+                    { name: 'remove', value: 'remove'}
+                ))
         .addUserOption(option2 =>
             option2.setName('user')
                 .setDescription('Dùng ID người dùng để chặn.')

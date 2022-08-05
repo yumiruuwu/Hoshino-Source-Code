@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const wiki = require('wikijs').default;
 const wait = require('util').promisify(setTimeout);
@@ -19,8 +19,10 @@ module.exports = {
                     option.setName('language')
                         .setDescription('Vui lòng chọn ngôn ngữ')
                         .setRequired(true)
-                        .addChoice('Tiếng Anh', 'en')
-                        .addChoice('Tiếng Việt', 'vi'))),
+                        .addChoices(
+                            { name: 'Tiếng Anh', value: 'en' },
+                            { name: 'Tiếng Việt', value: 'vi' }
+                        ))),
     async execute (client, interaction) {
         const enwikiapiurl = 'https://en.wikipedia.org/w/api.php';
         const viwikiapiurl = 'https://vi.wikipedia.org/w/api.php';
@@ -56,10 +58,10 @@ module.exports = {
                     shortedSummary = _.take(shortedSummary, 2)
                     shortedSummary = shortedSummary.toString().substring(0, 800) + '...'
 
-                    const searchEmbed = new MessageEmbed()
+                    const searchEmbed = new EmbedBuilder()
                     .setTitle(result[0])
                     .setURL(result[1])
-                    .setColor('LIGHT_GREY')
+                    .setColor('Random')
                     .setAuthor({ name: 'Wikipedia', iconURL: 'https://i.imgur.com/YDQ5sBS.png', url: 'https://www.wikipedia.org' })
                     .setThumbnail(result[2])
                     .setDescription(shortedSummary)

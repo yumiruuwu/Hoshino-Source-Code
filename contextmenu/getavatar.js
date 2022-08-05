@@ -10,7 +10,7 @@ module.exports = {
             const avatarEmbed = new MessageEmbed()
             .setTitle(`Ảnh hồ sơ của thành viên ${user.tag}`)
             .setColor(user.displayHexColor)
-            .setImage(user.displayAvatarURL({ dynamic: true, size: 1024 }))
+            .setImage(user.displayAvatarURL({ dynamic: true, size: 4096 }))
             .setFooter({ text: `${user.username}` })
             .setTimestamp();
 

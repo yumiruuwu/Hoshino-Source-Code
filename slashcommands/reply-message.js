@@ -1,4 +1,4 @@
-//const MessageEmbed = require('discord.js');
+const { PermissionsBitField } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 //const { ownerId } = require('../config.json');
 
@@ -17,9 +17,9 @@ module.exports = {
     async execute (client, interaction) {
         //if (interaction.user.id !== ownerId) return interaction.reply({ content: 'Uhhh oh... Chỉ chủ sở hữu bot mới được phép xài lệnh này .-.' });
         if (!interaction.member.permissions.has("MANAGE_GUILD")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true });
-        if (!interaction.guild.me.permissionsIn(interaction.channel).has('VIEW_CHANNEL')) return interaction.reply({ content: 'Mình không có đủ quyền để thực hiện theo yêu cầu của bạn, vui lòng hãy kiểm tra và bổ sung quyền VIEW_CHANNEL cho mình nhé ;-;', ephemeral: true });
-        if (!interaction.guild.me.permissionsIn(interaction.channel).has('SEND_MESSAGES')) return interaction.reply({ content: 'Mình không có đủ quyền để thực hiện theo yêu cầu của bạn, vui lòng hãy kiểm tra và bổ sung quyền SEND_MESSAGE cho mình nhé ;-;', ephemeral: true });
-        if (!interaction.guild.me.permissionsIn(interaction.channel).has('USE_EXTERNAL_EMOJIS')) return interaction.reply({ content: 'Hình như nội dung tin nhắn có sử dụng custom emoji và em không có quyền được phép sử dụng emoji từ server khác .-.', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.ViewChannel)) return interaction.reply({ content: 'Mình không có đủ quyền để thực hiện theo yêu cầu của bạn, vui lòng hãy kiểm tra và bổ sung quyền VIEW_CHANNEL cho mình nhé ;-;', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.SendMessages)) return interaction.reply({ content: 'Mình không có đủ quyền để thực hiện theo yêu cầu của bạn, vui lòng hãy kiểm tra và bổ sung quyền SEND_MESSAGE cho mình nhé ;-;', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.UseExternalEmojis)) return interaction.reply({ content: 'Hình như nội dung tin nhắn có sử dụng custom emoji và em không có quyền được phép sử dụng emoji từ server khác .-.', ephemeral: true });
         const mid = interaction.options.getString('message_id');
         const mcontent = interaction.options.getString('message');
         const currentchannel = interaction.channel;

@@ -1,5 +1,5 @@
 const db = require('../models/warns');
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
                 .setDescription('Lý do cảnh cáo')
                 .setRequired(true)),
     async execute (client, interaction) {
-        if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if(!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
 
         const user = interaction.options.getUser('user')
         const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id)
@@ -46,13 +46,13 @@ module.exports = {
             data.save()
         });
 
-        const userEmbed = new MessageEmbed()
+        const userEmbed = new EmbedBuilder()
         .setDescription(`Bạn đã bị cảnh cáo với lý do **${reason}**`)
-        .setColor('RED')
+        .setColor('Red')
 
-        const warnEmbed = new MessageEmbed()
+        const warnEmbed = new EmbedBuilder()
         .setDescription(`Đã cảnh cáo thành viên ${user} với lý do **${reason}**`)
-        .setColor('BLUE')
+        .setColor('Blue')
         
         member.send({ embeds: [userEmbed] })
         interaction.reply({ embeds: [warnEmbed] })
