@@ -1,5 +1,5 @@
 //const Discord = require('discord.js');
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder, PermissionsBitField } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -16,7 +16,8 @@ module.exports = {
                 .setRequired(true)),
     async execute (client, interaction) {
         //const options = interaction.options._hoistedOptions;
-        if(!interaction.member.permissions.has("KICK_MEMBERS")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if(!interaction.member.permissions.has(PermissionsBitField.Flags.KickMembers)) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.KickMembers)) return interaction.reply({ content: 'Mình không có quyền thực hiện điều này ;-;\nHãy bổ sung cho mình quyền KICK_MEMBERS để mình có thể thực hiện theo yêu cầu của bạn.', ephemeral: true });
 
         const user = interaction.options.getUser('user')
         const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id)
@@ -25,12 +26,12 @@ module.exports = {
         const reason = interaction.options.getString('reason')
 
         if(!member.kickable || member.user.id === client.user.id) return interaction.reply("Mình không thể đá thành viên đó ra khỏi nhà.");
-
+        if(interaction.user.id === member.user.id) return interaction.reply("Bạn không thể tự đá bản thân ra khỏi nhà được :v");
         if(interaction.member.roles.highest.position <= member.roles.highest.position) return interaction.reply(`<a:9441uncheckraveninha:882180505892683846> Thành viên được đề cập có role cao hơn hoặc ngang với bạn.`)
 
-        const kickembed = new MessageEmbed()
+        const kickembed = new EmbedBuilder()
         .setDescription(`**${member.user.tag}** đã bị đá ra khỏi nhà với lý do: \`${reason}\``)
-        .setColor("GREEN")
+        .setColor("Green")
         //.setFooter("KICK_MEMBERS")
         .setFooter({ text: 'KICK_MEMBERS' })
         .setTimestamp()

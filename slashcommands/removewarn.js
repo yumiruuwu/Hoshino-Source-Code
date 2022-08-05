@@ -1,5 +1,5 @@
 const db = require('../models/warns');
-//const { Message, MessageEmbed } = require('discord.js');
+const { PermissionsBitField } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -15,7 +15,7 @@ module.exports = {
                 .setDescription('Cần xoá cảnh cáo số mấy!')
                 .setRequired(true)),
     async execute (client, interaction) {
-        if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if(!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
 
         const user = interaction.options.getUser('user')
         const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id)

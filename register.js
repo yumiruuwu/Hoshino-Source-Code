@@ -1,6 +1,6 @@
 const fs = require('fs');
 const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const { Routes } = require('discord-api-types/v10');
 const { clientId, token } = require('./config.json');
 //const { Client, Collection, Intents } = require('discord.js');
 //const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_VOICE_STATES, Intents.FLAGS.GUILD_INVITES, Intents.FLAGS.GUILD_MEMBERS] }, { partials: ["MESSAGE", "CHANNEL", "REACTION" ]});
@@ -23,7 +23,7 @@ for (const cfile of contextmenucommandFiles) {
 	commands.push(ccommand);
 }
 
-const rest = new REST({ version: '9' }).setToken(token);
+const rest = new REST({ version: '10' }).setToken(token);
 
 (async () => {
 	try {

@@ -1,4 +1,4 @@
-//const { MessageEmbed } = require('discord.js');
+const { PermissionsBitField } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 //const { ownerId } = require('../config.json');
 
@@ -16,8 +16,8 @@ module.exports = {
                 .setRequired(true)),
     async execute (client, interaction) {
         //if (interaction.user.id !== ownerId) return interaction.reply({ content: 'Uhhh oh... Chỉ chủ sở hữu bot mới được phép xài lệnh này .-.' });
-        if (!interaction.guild.me.permissionsIn(interaction.channel).has('ADD_REACTIONS')) return interaction.reply({ content: 'Em không có đủ quyền để làm theo mệnh lệnh của chủ nhân, chủ nhân có thể bổ sung quyền ADD_REACTIONS cho em được không ;-;', ephemeral: true });
-        if (!interaction.guild.me.permissionsIn(interaction.channel).has('USE_EXTERNAL_EMOJIS')) return interaction.reply({ content: 'Em không có đủ quyền để làm theo mệnh lệnh của chủ nhân, chủ nhân có thể bổ sung quyền USE_EXTERNAL_EMOJIS cho em được không ;-;', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.AddReactions)) return interaction.reply({ content: 'Em không có đủ quyền để làm theo mệnh lệnh của chủ nhân, chủ nhân có thể bổ sung quyền ADD_REACTIONS ở kênh này cho em được không ;-;', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.UseExternalEmojis)) return interaction.reply({ content: 'Em không có đủ quyền để làm theo mệnh lệnh của chủ nhân, chủ nhân có thể bổ sung quyền USE_EXTERNAL_EMOJIS ở kênh này cho em được không ;-;', ephemeral: true });
         const mid = interaction.options.getString('message_id');
         const remoji = interaction.options.getString('emoji');
         const currentchannel = interaction.channel;

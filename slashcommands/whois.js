@@ -1,5 +1,5 @@
 //const Discord = require('discord.js');
-const { MessageEmbed } = require("discord.js");
+const { EmbedBuilder } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const moment = require('moment-timezone');
 //const wait = require('util').promisify(setTimeout);
@@ -18,38 +18,38 @@ const dvc = {
     mobile: "Điện thoại"
 };
 
-const locale = {
-    'en-US': 'Tiếng Anh (Mỹ)',
-    'en-GB': 'Tiếng Anh (Anh)',
-    bg: 'Tiếng Bungari',
-    'zh-CN': 'Tiếng Trung Quốc',
-    'zh-TW': 'Tiếng Đài Loan',
-    hr: 'Tiếng Croatia',
-    cs: 'Tiếng Séc',
-    da: 'Tiếng Đan Mạch',
-    nl: 'Tiếng Hà Lan',
-    fi: 'Tiếng Phần Lan',
-    fr: 'Tiếng Pháp',
-    de: 'Tiếng Đức',
-    el: 'Tiếng Hy Lạp',
-    hi: 'Tiếng Hindi',
-    hu: 'Tiếng Hungary',
-    it: 'Tiếng Ý',
-    ja: 'Tiếng Nhật',
-    ko: 'Tiếng Hàn Quốc',
-    lt: 'Tiếng Litva',
-    no: 'Tiếng Na Uy',
-    pl: 'Tiếng Ba Lan',
-    'pt-BR': 'Tiếng Bồ Đào Nha',
-    ro: 'Tiếng Rumani',
-    ru: 'Tiếng Nga',
-    'es-ES': 'Tiếng Tây Ban Nha',
-    'sv-ES': 'Tiếng Thuỵ Điển',
-    th: 'Tiếng Thái',
-    tr: 'Tiếng Thổ Nhĩ Kỳ',
-    uk: 'Tiếng Ukraina',
-    vi: 'Tiếng Việt'
-};
+// const locale = {
+//     'en-US': 'Tiếng Anh (Mỹ)',
+//     'en-GB': 'Tiếng Anh (Anh)',
+//     bg: 'Tiếng Bungari',
+//     'zh-CN': 'Tiếng Trung Quốc',
+//     'zh-TW': 'Tiếng Đài Loan',
+//     hr: 'Tiếng Croatia',
+//     cs: 'Tiếng Séc',
+//     da: 'Tiếng Đan Mạch',
+//     nl: 'Tiếng Hà Lan',
+//     fi: 'Tiếng Phần Lan',
+//     fr: 'Tiếng Pháp',
+//     de: 'Tiếng Đức',
+//     el: 'Tiếng Hy Lạp',
+//     hi: 'Tiếng Hindi',
+//     hu: 'Tiếng Hungary',
+//     it: 'Tiếng Ý',
+//     ja: 'Tiếng Nhật',
+//     ko: 'Tiếng Hàn Quốc',
+//     lt: 'Tiếng Litva',
+//     no: 'Tiếng Na Uy',
+//     pl: 'Tiếng Ba Lan',
+//     'pt-BR': 'Tiếng Bồ Đào Nha',
+//     ro: 'Tiếng Rumani',
+//     ru: 'Tiếng Nga',
+//     'es-ES': 'Tiếng Tây Ban Nha',
+//     'sv-ES': 'Tiếng Thuỵ Điển',
+//     th: 'Tiếng Thái',
+//     tr: 'Tiếng Thổ Nhĩ Kỳ',
+//     uk: 'Tiếng Ukraina',
+//     vi: 'Tiếng Việt'
+// };
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -59,8 +59,12 @@ module.exports = {
             option2.setName('private')
                 .setDescription('Chọn Yes nếu bạn muốn xem 1 mình, chọn No nếu bạn muốn người khác có thể xem cùng.')
                 .setRequired(true)
-                .addChoice('Yes', 'yes')
-                .addChoice('No', 'no'))
+                .addChoices(
+                    { name: 'Yes', value: 'yes'},
+                    { name: 'No', value: 'no'}
+                ))
+                // .addChoice('Yes', 'yes')
+                // .addChoice('No', 'no'))
         .addUserOption(option =>
             option.setName('user')
                 .setDescription('Đề cập thành viên muốn xem hoặc bỏ trống nếu muốn xem của bản thân.')
@@ -164,7 +168,7 @@ module.exports = {
         const devices = member.presence?.clientStatus || {};
         const entries = Object.entries(devices).map((value) => `${dvc[value[0]]}`).join(", ");
 
-        const whoisembed = new MessageEmbed()
+        const whoisembed = new EmbedBuilder()
         //.setAuthor(`${member.user.tag}`, member.user.displayAvatarURL())
         .setAuthor({ name: `${member.user.tag}`, iconURL: member.user.displayAvatarURL() })
         .setColor(member.displayHexColor)
@@ -172,14 +176,23 @@ module.exports = {
         .setFooter({ text: `ID: ${member.user.id}` })
         .setThumbnail(member.user.displayAvatarURL({dynamic: true, size: 2048}))
         .setTimestamp()
-        .addField("__Trạng thái__:",`${status[member.presence?.status]}`, true)
-        .addField('__Ngày tham gia server__:',`${moment(member.joinedAt).tz('Asia/Ho_Chi_Minh').format("[Ngày] D [tháng] M [năm] YYYY, HH:mm:ss")}`, true)
-        .addField('__Tài khoản tạo lúc__:',`${moment(member.user.createdAt).tz('Asia/Ho_Chi_Minh').format("[Ngày] D [tháng] M [năm] YYYY, HH:mm:ss")}`, true)
-        .addField('__Ngôn ngữ thường dùng (PC Client Only)__:', `${locale[interaction.locale]}`)
-        .addField(`__Vai trò [${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `\`${roles.name}\``).length}]:__`,`${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `<@&${roles.id }>`).join(" **|** ") || "Không có vai trò"}`, true)
-        .addField("__Vị trí trong server:__", `${acknowledgements}`, true)
-        .addField("__Quyền hạn:__", `${permissions.join(` | `)}`)
-        .addField('__Nền tảng đang sử dụng:__', `${entries || 'Thành viên đang ngoại tuyến'}`);
+        .addFields(
+            {name: '__Trạng thái__:', value: `${status[member.presence?.status]}`, inline: true },
+            {name: '__Ngày tham gia server__:', value: `${moment(member.joinedAt).tz('Asia/Ho_Chi_Minh').format("[Ngày] D [tháng] M [năm] YYYY, HH:mm:ss")}`, inline: true },
+            {name: '__Tài khoản tạo lúc__:', value: `${moment(member.user.createdAt).tz('Asia/Ho_Chi_Minh').format("[Ngày] D [tháng] M [năm] YYYY, HH:mm:ss")}`, inline: true },
+            {name: `__Vai trò [${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `\`${roles.name}\``).length}]:__`, value: `${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `<@&${roles.id }>`).join(" **|** ") || "Không có vai trò"}`, inline: true },
+            {name: '__Vị trí trong server:__', value: `${acknowledgements}`, inline: true },
+            {name: '__Quyền hạn:__', value: `${permissions.join(` | `)}`},
+            {name: '__Nền tảng đang sử dụng:__', value: `${entries || 'Thành viên đang ngoại tuyến'}`}
+        )
+        // .addField("__Trạng thái__:",`${status[member.presence?.status]}`, true)
+        // .addField('__Ngày tham gia server__:',`${moment(member.joinedAt).tz('Asia/Ho_Chi_Minh').format("[Ngày] D [tháng] M [năm] YYYY, HH:mm:ss")}`, true)
+        // .addField('__Tài khoản tạo lúc__:',`${moment(member.user.createdAt).tz('Asia/Ho_Chi_Minh').format("[Ngày] D [tháng] M [năm] YYYY, HH:mm:ss")}`, true)
+        // .addField('__Ngôn ngữ thường dùng (PC Client Only)__:', `${locale[interaction.locale]}`)
+        // .addField(`__Vai trò [${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `\`${roles.name}\``).length}]:__`,`${member.roles.cache.filter(r => r.id !== interaction.guild.id).map(roles => `<@&${roles.id }>`).join(" **|** ") || "Không có vai trò"}`, true)
+        // .addField("__Vị trí trong server:__", `${acknowledgements}`, true)
+        // .addField("__Quyền hạn:__", `${permissions.join(` | `)}`)
+        // .addField('__Nền tảng đang sử dụng:__', `${entries || 'Thành viên đang ngoại tuyến'}`);
         if (activities.length > 0) whoisembed.setDescription(`**__Hoạt động của thành viên:__** <@!${member.user.id}>\n${activities.join('\n')}`);
         // if (activities) whoisembed.setDescription(activities.map((x, i) => `**${x.type}**: \`${x.name || "None"} : ${x.details || "None"} : ${x.state || "None"}\``).join("\n"))
         if (customStatus) whoisembed.addFields({ name: '__Custom Status:__', value: `${customStatus}` });

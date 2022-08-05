@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const covidapi = require('novelcovid');
 const moment = require('moment-timezone');
@@ -16,8 +16,10 @@ module.exports = {
             option.setName('history')
                 .setDescription('Lịch sử ghi nhận. Để trống nếu muốn xem thống kê hôm nay')
                 .setRequired(false)
-                .addChoice('Hôm qua', 'yesterday')
-                .addChoice('2 ngày trước', 'twodaysago')),
+                .addChoices(
+                    { name: 'Hôm qua', value: 'yesterday'},
+                    { name: '2 ngày trước', value: 'twodaysago'}
+                )),
         async execute (client, interaction) {
             const country = interaction.options.getString('country');
             const history = interaction.options.getString('history');
@@ -40,7 +42,7 @@ module.exports = {
             //const twodaysglobal = await covidapi.twoDaysAgo.all(); deprecated?
             if (!country) {  
                 if (!history) {
-                    const globalEmbed = new MessageEmbed()
+                    const globalEmbed = new EmbedBuilder()
                     .setTitle('Thống kê tình hình dịch bệnh toàn cầu')
                     .setColor('LUMINOUS_VIVID_PINK')
                     .setDescription(`- Dưới đây là thống kê số ca bị nhiễm - đã khỏi - tử vong trong ngày hôm nay.`)
@@ -68,9 +70,9 @@ module.exports = {
                     
                     await interaction.editReply({ embeds: [globalEmbed] });
                 } else if (history === 'yesterday') {
-                    const yesterdayGlobalEmbed = new MessageEmbed()
+                    const yesterdayGlobalEmbed = new EmbedBuilder()
                     .setTitle('Thống kê tình hình dịch bệnh toàn cầu')
-                    .setColor('LUMINOUS_VIVID_PINK')
+                    .setColor('LuminousVividPink')
                     .setDescription(`- Dưới đây là thống kê số ca bị nhiễm - đã khỏi - tử vong trong ngày hôm qua.`)
                     .addFields(
                         {name: 'Tổng số ca bị nhiễm:', value: `${yesglobalstt.cases} ca`, inline: true},
@@ -101,7 +103,7 @@ module.exports = {
                 if (countrystt.message || yescountrystt.message) return interaction.editReply({ content: 'Không tìm thấy quốc gia mà bạn yêu cầu.' });
                 //return interaction.reply({ content: 'Coming Soon...', ephemeral: true });
                 if (!history) {
-                    const countryEmbed = new MessageEmbed()
+                    const countryEmbed = new EmbedBuilder()
                     .setTitle(`Thống kê tình hình dịch bệnh ở ${countrystt.country}`)
                     .setDescription(`- Dưới đây là thống kê số ca bị nhiễm - đã khỏi - tử vong trong ngày hôm nay.\n**1 số quốc gia sẽ mất nhiều thời gian để cập nhật dữ liệu nên sẽ có khả năng chưa có thống kê cho hôm nay**`)
                     .setThumbnail(`${countrystt.countryInfo.flag}`)
@@ -129,7 +131,7 @@ module.exports = {
 
                     await interaction.editReply({ embeds: [countryEmbed] });
                 } else if (history === 'yesterday') {
-                    const yesterdayCountryEmbed = new MessageEmbed()
+                    const yesterdayCountryEmbed = new EmbedBuilder()
                     .setTitle(`Thống kê tình hình dịch bệnh ở ${yescountrystt.country}`)
                     .setDescription(`- Dưới đây là thống kê số ca bị nhiễm - đã khỏi - tử vong trong ngày hôm qua.`)
                     .setThumbnail(`${yescountrystt.countryInfo.flag}`)

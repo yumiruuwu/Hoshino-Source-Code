@@ -1,5 +1,5 @@
 //const Discord = require('discord.js');
-//const { MessageEmbed } = require("discord.js");
+const { PermissionsBitField } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const wait = require('util').promisify(setTimeout);
 
@@ -12,7 +12,9 @@ module.exports = {
                 .setDescription('Số lượng tin nhắn cần quét [1-100]')
                 .setRequired(true)),
     async execute (client, interaction) {
-        if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if(!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: 'Mình không có quyền thực hiện điều này ;-;\nHãy bổ sung cho mình quyền MANAGE_MESSAGES để mình có thể thực hiện theo yêu cầu của bạn.', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: 'Mình không có đủ quyền để thực hiện theo yêu cầu của bạn, vui lòng hãy kiểm tra và bổ sung quyền MANAGE_MESSAGES ở kênh này cho mình nhé ;-;', ephemeral: true });
         await interaction.deferReply({ ephemeral: true });
         await wait(4000);
 

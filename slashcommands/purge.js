@@ -1,4 +1,5 @@
 //const { MessageEmbed } = require('discord.js');
+const { PermissionsBitField } = require("discord.js");
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -14,7 +15,9 @@ module.exports = {
                 .setDescription('Số tin nhắn cần xoá')
                 .setRequired(false)),
     async execute (client, interaction) {
-        if(!interaction.member.permissions.has("MANAGE_MESSAGES")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if(!interaction.member.permissions.has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true })
+        if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: 'Mình không có quyền thực hiện điều này ;-;\nHãy bổ sung cho mình quyền MANAGE_MESSAGES để mình có thể thực hiện theo yêu cầu của bạn.', ephemeral: true });
+        if (!interaction.guild.members.me.permissionsIn(interaction.channel).has(PermissionsBitField.Flags.ManageMessages)) return interaction.reply({ content: 'Mình không có đủ quyền để thực hiện theo yêu cầu của bạn, vui lòng hãy kiểm tra và bổ sung quyền MANAGE_MESSAGES ở kênh này cho mình nhé ;-;', ephemeral: true });
         const user = interaction.options.getUser('user')
         //const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id).catch(err => {}) || interaction.client.users.cache.get(user.id)
         const number = interaction.options.getString('number');

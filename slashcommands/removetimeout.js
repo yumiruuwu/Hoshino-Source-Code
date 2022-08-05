@@ -1,4 +1,4 @@
-const { MessageEmbed } = require('discord.js');
+const { EmbedBuilder, PermissionsBitField } = require('discord.js');
 const { SlashCommandBuilder } = require('@discordjs/builders');
 
 module.exports = {
@@ -14,8 +14,8 @@ module.exports = {
                 .setDescription('Lý do gỡ khỏi thời gian chờ')
                 .setRequired(false)),
     async execute (client, interaction) {
-        if(!interaction.member.permissions.has("MODERATE_MEMBERS")) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true });
-        if (!interaction.guild.me.permissions.has('MODERATE_MEMBERS')) return interaction.reply({ content: 'Hmm, hình như mình chưa được trao quyền MODERATE_MEMBERS để thực hiện yêu cầu này .-.', ephemeral: true });
+        if(!interaction.member.permissions.has(PermissionsBitField.Flags.ModerateMembers)) return interaction.reply({ content: "Woah, bạn không có quyền sử dụng lệnh này .-.", ephemeral: true });
+        if (!interaction.guild.members.me.permissions.has(PermissionsBitField.Flags.ModerateMembers)) return interaction.reply({ content: 'Hmm, hình như mình chưa được trao quyền MODERATE_MEMBERS để thực hiện yêu cầu này .-.', ephemeral: true });
 
         const user = interaction.options.getUser('user');
         const member = interaction.guild.members.cache.get(user.id) || await interaction.guild.members.fetch(user.id);
@@ -26,9 +26,9 @@ module.exports = {
 
         member.timeout(null, reason);
         // interaction.reply({ content: 'Tính năng đang thử nghiệm...', ephemeral: true})
-        const rtimeoutembed = new MessageEmbed()
+        const rtimeoutembed = new EmbedBuilder()
         .setDescription(`Thành viên ${user} đã được gỡ khỏi hàng chờ.\n**Bởi:** ${interaction.user}\n- Lý do: ${reason}`)
-        .setColor('GREEN')
+        .setColor('Green')
         .setFooter({ text: 'MODERATE_MEMBERS' })
         .setTimestamp()
 
